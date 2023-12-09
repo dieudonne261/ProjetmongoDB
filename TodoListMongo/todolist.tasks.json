@@ -1,0 +1,32 @@
+[{
+  "_id": {
+    "$oid": "65530c81adb5bf123ded4767"
+  },
+  "nom": "Manasa lamba",
+  "description": "isaka lahady",
+  "statue": 1
+},
+{
+  "_id": {
+    "$oid": "656ea4c61b07e7d4891e7f45"
+  },
+  "nom": "Mamita projet",
+  "description": "Projet MongoDB sy JS",
+  "statue": 1
+},
+{
+  "_id": {
+    "$oid": "65749445653f900ecd06dd36"
+  },
+  "nom": "PHP",
+  "description": "Mila vita",
+  "statue": 0
+},
+{
+  "_id": {
+    "$oid": "6574955c653f900ecd06dd38"
+  },
+  "nom": "Matory",
+  "description": "Mila mifoa",
+  "statue": 1
+}]
