@@ -1,0 +1,84 @@
+[{
+  "_id": {
+    "$oid": "6593f164a3fd0da3f973fc5f"
+  },
+  "nom": "Projet Mongo",
+  "description": "Mila vita tompoko isa",
+  "assigne": [
+    "ddieu0970@gmail.com",
+    "randri.d@zurcher.edu.mg",
+    "jean@gmail.com",
+    "baba@gmail.com"
+  ],
+  "date_est": "2024-01-24",
+  "createur": "ddieu0970@gmail.com",
+  "assigne_invite": [],
+  "statue_project": [
+    {
+      "nom_project": "Faire le design",
+      "description_projet": "Mila vita alohany fety fa tsara raha @herinadro",
+      "date_post": "2024-01-05",
+      "assigne_projet": [
+        "randri.d@zurcher.edu.mg"
+      ],
+      "statue": "terminer",
+      "crepar": "ddieu0970@gmail.com"
+    },
+    {
+      "nom_project": "Installion de Bibliotheque",
+      "description_projet": "Tsotra2 fa mila vita ihany na dia izany aza zalah",
+      "date_post": "2024-01-07",
+      "assigne_projet": [
+        "ddieu0970@gmail.com",
+        "randri.d@zurcher.edu.mg"
+      ],
+      "statue": "en cours",
+      "crepar": "ddieu0970@gmail.com"
+    },
+    {
+      "nom_project": "Base de donnée",
+      "description_projet": "MongoDB no ampesaina",
+      "date_post": "2024-01-08",
+      "assigne_projet": [
+        "jean@gmail.com"
+      ],
+      "statue": "en validation",
+      "crepar": "ddieu0970@gmail.com"
+    },
+    {
+      "nom_project": "Merise",
+      "description_projet": "Structure ny base de donné",
+      "date_post": "2024-01-08",
+      "assigne_projet": [
+        "randri.d@zurcher.edu.mg"
+      ],
+      "statue": "a faire",
+      "crepar": "jean@gmail.com"
+    },
+    {
+      "nom_project": "Design Parti 2",
+      "description_projet": "Tsotra2",
+      "date_post": "2024-01-16",
+      "assigne_projet": [
+        "randri.d@zurcher.edu.mg",
+        "baba@gmail.com"
+      ],
+      "statue": "terminer",
+      "crepar": "baba@gmail.com"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "659a4a8c8fb19e58f9003fdb"
+  },
+  "nom": "Projet Java",
+  "description": "Projet vaovao vao azo",
+  "assigne": [
+    "randri.d@zurcher.edu.mg"
+  ],
+  "date_est": "2024-01-25",
+  "createur": "randri.d@zurcher.edu.mg",
+  "assigne_invite": [],
+  "statue_project": []
+}]

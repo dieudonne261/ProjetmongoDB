@@ -1,0 +1,55 @@
+[{
+  "_id": {
+    "$oid": "658d56495697cf410803acd6"
+  },
+  "nom": "Dieu",
+  "prenom": "Donné",
+  "email": "ddieu0970@gmail.com",
+  "mdp": "ddieu261",
+  "datedenai": "2023-12-07",
+  "avatar": "green"
+},
+{
+  "_id": {
+    "$oid": "658d58625697cf410803acd8"
+  },
+  "nom": "Randria",
+  "prenom": "Noro",
+  "email": "randri.d@zurcher.edu.mg",
+  "mdp": "randria",
+  "datedenai": "2010-10-10",
+  "avatar": "blue"
+},
+{
+  "_id": {
+    "$oid": "659511a71a9b81907600b6ca"
+  },
+  "nom": "Fara",
+  "prenom": "         Kely",
+  "email": "fara@gmail.com",
+  "mdp": "farakely",
+  "datedenai": "2000-01-01",
+  "avatar": "red"
+},
+{
+  "_id": {
+    "$oid": "659aa5dd8fb19e58f9003fe0"
+  },
+  "nom": "Koto ",
+  "prenom": " Jean",
+  "email": "jean@gmail.com",
+  "mdp": "kotojean",
+  "datedenai": "2000-01-31",
+  "avatar": "blue"
+},
+{
+  "_id": {
+    "$oid": "65a604c689231a5c570d65f9"
+  },
+  "nom": "Baba",
+  "prenom": "  Gasy",
+  "email": "baba@gmail.com",
+  "mdp": "baba123",
+  "datedenai": "2001-04-24",
+  "avatar": "yellow"
+}]
