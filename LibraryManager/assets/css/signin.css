@@ -1,0 +1,117 @@
+.login-page {
+  width: 700px;
+  padding: 8% 0 0;
+  margin: auto;
+  border-radius: 20px;
+}
+
+.form2{
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  display: flex;
+  height: 500px;
+}
+
+.form1 {
+  background-image: url(../img/1.png);
+  background-size: cover;
+}
+.form3 {
+  background-image: url(../img/11.png);
+  background-size: cover;
+}
+.form3,.form1 {
+  width: 500px;
+  height: 500px;
+  margin: 0 auto 100px;
+  padding: 55px;
+  text-align: center;
+}
+
+.input2 {
+  color: rgb(22, 22, 22);
+  outline: 0;
+  background: #ffffff;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  z-index: 1;
+  font-size: 14px;
+}
+
+.button {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  border-radius: 10px;
+  outline: 0;
+  background-color: rgb(51, 51, 51);
+  background-size: unset;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #ffffff;
+
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+
+.test{
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  border-radius: 10px;
+  outline: 0;
+  border-image: url(../img/button.jpg);
+  background-color: #ff0000;
+    background-size: cover;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #ffffff;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+
+.form .message {
+  margin: 15px 0 0;
+  position: relative;
+  top:20px;
+  color: #0db9fd;
+  font-size: 12px;
+}
+
+.message2 {
+  color: #0db9fd;
+  text-decoration: none;
+  font-size: 12px;
+}
+
+.form .message a {
+  color: #0db9fd;
+  text-decoration: none;
+}
+
+.form .register-form {
+  display: none;
+
+}
+
+body {
+  background-image: url(../img/back.jpg);
+  background-size:cover;
+  background-repeat:space;
+  font-family: "Roboto", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;      
+}
+
+h1{
+    z-index: 0;
+    color: #ffffff;
+}
