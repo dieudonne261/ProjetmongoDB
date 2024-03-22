@@ -12,6 +12,27 @@ if($_SESSION['session'] == 0){
   header("location:../index.php");
 }
 
+
+if (isset($_POST['emp'])) {
+  $codebarre = $_POST['codebarreemp'];
+  $email = $_POST['emailemp'];
+  $stmt_livres = $db->prepare("SELECT * FROM livres WHERE code_barre = :codebarre");
+  $stmt_livres->execute(array(':codebarre' => $codebarre));
+  $livre_exist = $stmt_livres->fetch();
+  $stmt_users = $db->prepare("SELECT * FROM users WHERE email = :email");
+  $stmt_users->execute(array(':email' => $email));
+  $user_exist = $stmt_users->fetch();
+
+  if ($livre_exist && $user_exist) {
+    $_SESSION['codebarre'] = $codebarre;
+    $_SESSION['email2'] = $email;
+    header("Location: registre-emprunt.php");
+  } else {
+    echo "alert('Code barre ou email non trouvée');</script>";
+  }
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +45,9 @@ if($_SESSION['session'] == 0){
   <link rel="shortcut icon" href="../assets/img/icon1.png" type="image/x-icon">
   <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
   <script src="../assets/js/pdf.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+  <script src="../assets/js/pdf2.js"></script>
+  
+  <script src=""></script>
   <style>
     @font-face {
     font-family: codebarre;
@@ -55,8 +78,12 @@ if($_SESSION['session'] == 0){
           <button type="button" class="btn btn-dark dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false" data-bs-reference="parent">
           </button>
           <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
-            <li><a class="dropdown-item" href="menu.php">Menu de Administrateur</a></li>
-            <li><hr class="dropdown-divider"></li>
+            <?php
+            if(($_SESSION['role']) == 'Admin') {
+                echo '<li><a class="dropdown-item" href="menu.php">Menu de Administrateur</a></li>';
+                echo '<li><hr class="dropdown-divider"></li>';
+            }
+            ?>
             <li><a class="dropdown-item" href="signout.php">Se deconnecter</a></li>
           </ul>
         </div>
@@ -196,9 +223,9 @@ if($_SESSION['session'] == 0){
         
       </div>
       <hr>
-      <table class="table table-dark table-borderless" id="invoice">
+      <table class="table table-dark table-borderless text-center rounded" id="invoice">
           <thead>
-          <tr class="display-6">
+          <tr class="h4">
             <th scope="col" >Titre</th>
             <th scope="col" >Auteur</th>
             <th scope="col" >Date d'edition</th>
@@ -213,9 +240,9 @@ if($_SESSION['session'] == 0){
           if ($stmt) {
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
               echo "<tr>";
-              echo "<td class='h4'>" . $row['titre'] . "</td>";
-              echo "<td class='h4'>" . $row['auteur'] . "</td>";
-              echo "<td class='h4'>" . $row['date_ed'] . "</td>";
+              echo "<td class='lead'>" . $row['titre'] . "</td>";
+              echo "<td class='lead'>" . $row['auteur'] . "</td>";
+              echo "<td class='lead'>" . $row['date_ed'] . "</td>";
               echo "<td style='font-family: codebarre; font-size:15px'>" . $row['code_barre'] . "</td>";
               echo "</tr>";
             }
@@ -225,7 +252,10 @@ if($_SESSION['session'] == 0){
           }
           ?>
           </tbody>
-        </table>
+      </table>
+
+
+        
 
         <button type="button" class="btn btn-primary m-2"  id="download">Enregister en pdf</button>
       
@@ -237,6 +267,184 @@ if($_SESSION['session'] == 0){
     
       <p class="display-3 mt-4">Menu Emprunt</p>
       <hr>
+      <div class="d-flex gap-4 justify-content-center py-2" >
+        <button class="btn btn-dark btn-lg rounded border" type="button" data-bs-toggle="modal" data-bs-target="#nouveau2">
+          <p class="display-5 mx-5">Nouveau</p>
+        </button>
+        <button class="btn btn-dark btn-lg rounded border" type="button" data-bs-toggle="modal" data-bs-target="#retour">
+          <p class="display-5 mx-5">Retour</p>
+        </button>
+        <button class="btn btn-dark btn-lg rounded border"  type="button" data-bs-toggle="modal" data-bs-target="#retard">
+          <p class="display-5 mx-5">Retard</p>
+        </button>
+
+
+        <div class="modal fade " id="nouveau2">
+          <div class="modal-dialog modal-dialog-centered ">
+            <div class="modal-content bg-dark">
+              <div class="modal-body">
+                <p class="display-5 mx-5">Nouveau Livres</p>
+                <hr>
+                <form method="POST">
+                  <div class="d-flex gap-2 mt-3">
+                      <input type="text" class="form-control form-control-lg form-dark" placeholder="Code barre" maxlength="13" name="codebarreemp" required>
+                  </div>  
+                  <div class="mb-3 mt-3 d-flex gap-2">
+                      <input type="mail" class="form-control form-control-lg" placeholder="Email" name="emailemp" required>
+                  </div>      
+                  <hr>
+                  <button type="submit" name="emp" value="" class="btn btn-primary" >Suivant</button>
+                  
+                </form>
+
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+
+
+        <div class="modal fade" id="retour">
+          <div class="modal-dialog modal-dialog-centered ">
+            <div class="modal-content bg-dark">
+              <div class="modal-body">
+                <p class="display-5 mx-5">Retour Livres</p>
+                <hr>
+                <form action="retour.php" method="POST">
+                  <div class="input-group mb-3 input-group-lg">
+                    <input type="text" class="form-control form-control-lg" placeholder="Code" name="codeemp" id="">
+                    <button class="btn btn-dark shadow" type="submit">Rechercher</button>
+                  </div>
+                </form>
+
+
+
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+
+        
+
+        <div class="modal fade" id="retard">
+              <div class="modal-dialog modal-xl modal-dialog-centered" >
+                <div class="modal-content bg-dark">
+                  <div class="modal-body text-center">
+                    <table class="table table-dark" id="invoice3">
+                        <thead>
+                            <tr>
+                                <th>Code</th>
+                                <th>Email</th>
+                                <th>Date limite</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                          <form action="rappel.php" method="post">
+                            <?php
+                                $sql = "SELECT * FROM emprunts where date_retour=''";
+                                $stmt = $db->query($sql);
+                                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                                    $newdate = date('Y-m-d', strtotime($row['date_emp'] . ' + 7 days'));
+    
+                                    if(strtotime($newdate) < strtotime(date('Y-m-d'))){
+                                      echo "<tr>";
+                                      echo "<td>".$row['id_emprunts']."</td>";
+                                      echo "<td>".$row['email']."</td>";
+                                      echo "<td>".$newdate."</td>";
+                                      echo "<td><button type='submit' class='btn btn-dark btn-sm' name='rap' value='".$row['email']."'>Rappel</button></td>";
+                                      echo "</tr>";
+                                    }
+                                    
+                                }
+                            ?>
+                            
+                            </form>
+                        </tbody>
+                    </table>
+                  </div>
+
+
+                </div>
+              </div>
+            </div>
+
+
+
+        <div class="modal fade" id="rech">
+          <div class="modal-dialog modal-dialog-centered ">
+            <div class="modal-content bg-dark">
+              <div class="modal-body">
+                <p class="display-5 mx-5">Recherche Emprunt</p>
+                <hr>
+                <form action="recherche-emprunt.php" method="POST">
+                  <div class="input-group mb-3 input-group-lg">
+                    <input type="text" class="form-control form-control-lg" placeholder="Code emprunt" name="code_emprunt" maxlength="5" required>
+                    <button class="btn btn-dark shadow" type="submit">Rechercher</button>
+                  </div>
+                </form>
+
+
+
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+
+
+
+        
+      </div>
+      <hr>
+      <table class="table table-dark table-borderless text-center rounded" id="invoice2">
+          <thead>
+          <tr class="h4">
+            <th scope="col" >Email</th>
+            <th scope="col" >Code</th>
+            <th scope="col" >Date d'emprunt</th>
+            <th scope="col" >Statues</th>
+          </tr>
+          </thead>
+          <tbody>
+          <?php
+          $sql = "SELECT * FROM emprunts";
+          $stmt = $db->query($sql);
+
+          if ($stmt) {
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+              echo "<tr >";
+              echo "<td class='lead'>" . $row['email'] . "</td>";
+              echo "<td class='lead'>" . $row['id_emprunts'] . "</td>";
+              echo "<td class='lead'>" . $row['date_emp'] . "</td>";
+              echo "<td class='lead'>";
+              if ($row['date_retour'] == "") {
+                $dateLimite = date('Y-m-d', strtotime($row['date_emp'] . '+7 days'));
+                if (strtotime($dateLimite) < strtotime(date('Y-m-d'))) {
+                    echo "En retard";
+                } else {
+                    echo "En cours";
+                }
+              } else {
+                  echo "Remis";
+              }
+              
+              echo "</td>";
+              echo "</tr>";
+            }
+          } 
+          else {
+            echo "Aucun livre trouvé.";
+          }
+          ?>
+          </tbody>
+      </table>
+
+      <button type="button" class="btn btn-primary mb-4"  id="download2">Enregister en pdf</button>
+      
     </div>
 
 

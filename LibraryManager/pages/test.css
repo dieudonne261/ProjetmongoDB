@@ -3,4 +3,5 @@
     src: url(../assets/font/Code39r.ttf);
 }
 div{
+    position: relative;top: 200;
 }

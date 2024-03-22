@@ -21,15 +21,25 @@ if(isset($_POST['login'])) {
     $stmt = $db->prepare("SELECT * FROM users WHERE email = :email AND mdp = :mdp");
     $stmt->execute(array('email' => $_POST['email'], 'mdp' => $_POST['mdp']));
     $result = $stmt->fetch();
+    
     if ($result) {
         $_SESSION['email']=$_POST['email'];
         $_SESSION['session'] = 1;
-        header('Location: pages/menu.php');
+        $_SESSION['role'] = $result['role'];
+    
+        if ($result['role'] == "Admin") {
+            header('Location: pages/menu.php');
+        } else if ($result['role'] == "Membre") {
+            header('Location: pages/menu-membre.php');
+        } else {
+            header('Location: pages/menu-bibli.php');
+        }
     } else {
         echo '<script>alert("Votre pseudo ou mot de passe est incorrect ...");</script>';
         $_SESSION['session'] = 0;
     }
 }
+
 
 ?>
 
